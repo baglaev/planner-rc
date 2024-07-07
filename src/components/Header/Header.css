@@ -1,0 +1,132 @@
+.header {
+  display: flex;
+  max-width: 1800px;
+  height: 77px;
+  justify-content: space-between;
+  margin: 30px auto 0;
+  align-items: flex-end;
+  white-space: nowrap;
+}
+
+.header__logo {
+  font-size: 26px;
+  line-height: 1.2;
+  margin-right: 19px;
+  display: flex;
+}
+
+.header__logo-img {
+  margin-right: 35px;
+}
+
+.header__calendar-button {
+  width: 64px;
+  height: 48px;
+  border-radius: 8px;
+  background-image: url('../../images/button-prev.svg');
+  background-repeat: no-repeat;
+  border: none;
+  background-position: center;
+  cursor: pointer;
+}
+
+.header__calendar-button:hover {
+  opacity: 0.7;
+}
+
+.header__title {
+  font-size: 64px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.header__span {
+  color: #f51b1b;
+}
+
+.header__calendar-buttons {
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
+}
+
+.button_next {
+  transform: rotate(180deg);
+}
+
+.header__calendar-month {
+  font-size: 26px;
+  line-height: 1.2;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.header__link {
+  background-color: #0d0c0c;
+  color: #fff;
+  border-radius: 12px;
+  padding: 21px 32px;
+  font-size: 18px;
+  line-height: 1;
+  height: 60px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.header__left-column {
+  display: flex;
+  column-gap: 19px;
+  align-items: center;
+}
+
+.header__right-column {
+  display: flex;
+  align-items: flex-end;
+  column-gap: 8px;
+}
+
+.header__profile-section {
+  display: flex;
+  align-items: flex-end;
+  column-gap: 33px;
+  margin-left: 60px;
+}
+
+.header__add-button {
+  background-image: url('../../images/add-icon.svg');
+  border: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 86px;
+  height: 60px;
+  box-sizing: border-box;
+  padding: 19px 32px;
+  background-color: #0d0c0c;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.header__add-button:hover {
+  background-color: #f51b1b;
+}
+
+.header__profile {
+  border-radius: 50%;
+  background-image: url('../../images/avatar-rc.png');
+  border: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 80px;
+  height: 80px;
+}
+
+@media screen and (max-width: 1439px) {
+  .header__title {
+    font-size: 40px;
+  }
+
+  .header__profile-section {
+    column-gap: 22px;
+    margin-left: 10px;
+  }
+}

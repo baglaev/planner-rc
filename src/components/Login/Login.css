@@ -1,0 +1,136 @@
+.login {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  justify-content: space-around;
+  align-items: center;
+  background: #454b5766;
+  display: none;
+}
+
+.login_opened {
+  display: flex;
+}
+
+.login__section {
+  background-color: #fff;
+  border-radius: 64px;
+  min-width: 600px;
+  min-height: 510px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  padding: 80px 95px 64px;
+  box-sizing: border-box;
+}
+
+.login__close-button {
+  background-image: url('../../images/close-icon.svg');
+  width: 40px;
+  height: 40px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  background-color: transparent;
+  top: 49px;
+  right: 49px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.login__close-button:hover {
+  opacity: 0.7;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 346px;
+}
+
+.login__button {
+  margin-top: 40px;
+  box-sizing: border-box;
+  height: 60px;
+  padding: 21px 32px;
+  border: none;
+  border-radius: 12px;
+  background-color: #0d0c0c;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.login__button:hover {
+  background-color: #f51b1b;
+}
+
+.login__input {
+  padding: 10px 16px 9px;
+  border-radius: 12px;
+  border: 1px solid #0d0c0c;
+  box-sizing: border-box;
+  height: 60px;
+}
+
+.login__label-input {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.password-input {
+  margin-top: 32px;
+}
+
+.password-input-confirm {
+  margin-top: 7px;
+}
+
+.login__error {
+  color: #f51b1b;
+  font-size: 14px;
+  line-height: 1.2;
+  margin-top: 4px;
+  opacity: 0;
+  height: 21px;
+}
+
+.login__error_active {
+  opacity: 1;
+}
+
+.login__message {
+  font-size: 14px;
+  line-height: 1.2;
+  font-family: TT Commons;
+  color: #0d0c0c;
+  background-color: #fafafa;
+  display: flex;
+  column-gap: 8px;
+  border-radius: 12px;
+  padding: 8px 12px;
+  margin-bottom: 24px;
+  align-items: center;
+}
+
+.login__message-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.login__eye-icon {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  right: 16px;
+  top: 14px;
+  cursor: pointer;
+}

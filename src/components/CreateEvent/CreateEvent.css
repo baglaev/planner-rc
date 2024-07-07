@@ -1,0 +1,137 @@
+.event {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  justify-content: space-around;
+  align-items: center;
+  background: #454b5766;
+  display: none;
+}
+
+.event_opened {
+  display: flex;
+}
+
+.event__section {
+  background-color: #fff;
+  border-radius: 64px;
+  width: 1076px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  padding: 80px 64px 64px;
+  box-sizing: border-box;
+}
+
+.event__close-button {
+  background-image: url('../../images/close-icon.svg');
+  width: 40px;
+  height: 40px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  background-color: transparent;
+  top: 40px;
+  right: 40px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.event__close-button:hover {
+  opacity: 0.7;
+}
+
+.event__title {
+  margin: 0;
+  font-size: 36px;
+  line-height: 1;
+}
+
+.event__form {
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+}
+
+.event__form-flex {
+  display: flex;
+  column-gap: 22px;
+}
+
+.event__f-column {
+  width: 580px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+}
+
+.event__input {
+  border: 1px solid #b3b3bc;
+  padding: 18px 16px;
+  box-sizing: border-box;
+  height: 60px;
+  border-radius: 12px;
+}
+
+.event__s-column {
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+}
+
+.event__date-container {
+  display: flex;
+  column-gap: 8px;
+}
+
+.event__input-date {
+  box-sizing: border-box;
+  padding: 18px 16px;
+  border-radius: 12px;
+  border: 1px solid #b3b3bc;
+}
+
+.event__input-file {
+  display: none;
+}
+
+.event__input-file-label {
+  border-radius: 12px;
+  border: 1px dashed #b3b3bc;
+  width: 100%;
+  height: 170px;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1.1;
+  color: #b3b3bc;
+  font-family: TT Commons;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.event__submit-button {
+  background-color: #efefef;
+  color: #b3b3bc;
+  font-size: 18px;
+  line-height: 1;
+  padding: 21px 32px;
+  border: none;
+  border-radius: 12px;
+  margin: 64px auto 0;
+}
+
+.submit-button_active {
+  background-color: #0d0c0c;
+  color: #fff;
+  cursor: pointer;
+}
+
+.submit-button_active:hover {
+  background-color: #f51b1b;
+}

@@ -1,0 +1,126 @@
+/* src/Calendar.css */
+.calendar {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 88px;
+  max-width: 1800px;
+}
+
+.calendar__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.calendar__grid {
+  display: grid;
+  /* grid-template-columns: repeat(7, 1fr); */
+  gap: 1px;
+  /* background-color: #ddd; */
+}
+
+.calendar__days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar__day-header {
+  background-color: #fff;
+  padding: 10px;
+  text-align: right;
+}
+
+.calendar__day {
+  padding: 10px;
+  text-align: right;
+  aspect-ratio: 2 / 1;
+  background-color: #fff;
+  font-family: TT Commons;
+  max-width: 236px;
+  height: -webkit-fill-available;
+}
+
+.calendar__section {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  background-color: #b3b3bc;
+  border: 1px solid #b3b3bc;
+  border-radius: 24px;
+  max-width: 1800px;
+}
+
+.calendar__section .calendar__day:first-child {
+  border-top-left-radius: 24px;
+}
+
+.calendar__section .calendar__day:last-child {
+  border-bottom-right-radius: 24px;
+}
+
+.calendar__section .calendar__day:nth-child(36) {
+  border-bottom-left-radius: 24px;
+}
+
+.calendar__section .calendar__day:nth-child(7) {
+  border-top-right-radius: 24px;
+}
+
+.calendar__day-header {
+  font-weight: bold;
+}
+
+.next-month-day {
+  color: #a4a4a4;
+}
+
+.empty-day {
+  /* background-color: #f5f5f5; */
+}
+
+.calendar__events {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: 20px;
+  line-height: 1.4;
+  row-gap: 4px;
+}
+
+.calendar__event {
+  font-family: TT Commons;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 8px;
+  background-color: #efefef;
+  color: #0d0c0c;
+  width: fit-content;
+  margin-left: auto;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 120px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1800px) {
+  .calendar__day {
+    max-width: 200px;
+  }
+
+  .calendar__events {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  .calendar__day {
+    max-width: 170px;
+  }
+}
+
+@media screen and (max-width: 1337px) {
+  .calendar__day {
+    max-width: 151px;
+  }
+}
