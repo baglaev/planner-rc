@@ -1,5 +1,7 @@
 # Тестовое задание Red Collar planner
 
+Ссылка на деплой https://planner-e-rc.netlify.app/
+
 ## Стек: React, Vite, yarn
 
 ## Команды для запуска проекта
