@@ -6,7 +6,6 @@
 
 ## Команды для запуска проекта
 
-- cd frontend
 - yarn
 - yarn dev
 
