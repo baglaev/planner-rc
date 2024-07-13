@@ -90,6 +90,8 @@ function Login({ handleLogin, isOpen, onClose }) {
 
         try {
             await register(formValue.username, formValue.email, formValue.password);
+            const data = await authorize(formValue.email, formValue.password);
+            localStorage.setItem('jwt', data.jwt);
             handleLogin();
             onClose();
         } catch (err) {
