@@ -156,6 +156,7 @@ function App() {
           isLoggedIn={isLoggedIn}
           userId={userData.id}
           updateEventParticipants={updateEventParticipants}
+          handleLoginPopup={handleLoginPopup}
         />
       )}
       <PopupCongratulation

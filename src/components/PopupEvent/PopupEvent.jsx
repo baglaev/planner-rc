@@ -4,7 +4,7 @@ import rcAvatar from '../../images/avatar-rc.png';
 import testImage from '../../images/test-image.png';
 import { joinEvent, outEvent } from '../../utils/api';
 
-function PopupEvent({ event, onClose, isOpen, isLoggedIn, userId }) {
+function PopupEvent({ event, onClose, isOpen, isLoggedIn, userId, handleLoginPopup }) {
     const [userHasJoined, setUserHasJoined] = useState(false);
 
     useEffect(() => {
@@ -55,7 +55,7 @@ function PopupEvent({ event, onClose, isOpen, isLoggedIn, userId }) {
                     </div>
                     <p className="popup__description">{description}</p>
                 </div>
-                <p className="popup__participant">Участники</p>
+                <p className="popup__participant">Участники</p>/
                 <div className="popup__participant-items">
                     {participants.length > 0 ? (
                         participants.map((participant, index) => (
@@ -99,7 +99,7 @@ function PopupEvent({ event, onClose, isOpen, isLoggedIn, userId }) {
                             )}
                         </>
                     ) : (
-                        <p className="popup__connect"> Войдите, чтобы присоединиться к событию</p>
+                        <p className="popup__connect"><span className="popup-connect-span" onClick={handleLoginPopup}>Войдите</span>, чтобы присоединиться к событию</p>
                     )}
                 </div>
             </div>
