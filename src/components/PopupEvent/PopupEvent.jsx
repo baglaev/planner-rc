@@ -6,11 +6,18 @@ import { joinEvent, outEvent } from '../../utils/api';
 
 function PopupEvent({ event, onClose, isOpen, isLoggedIn, userId, handleLoginPopup }) {
     const [userHasJoined, setUserHasJoined] = useState(false);
+    const [eventHasPassed, setEventHasPassed] = useState(false);
 
     useEffect(() => {
         if (event && event.participants) {
             const hasJoined = event.participants.some(participant => participant.id === userId);
             setUserHasJoined(hasJoined);
+        }
+
+        if (event) {
+            const eventDate = new Date(event.dateStart);
+            const now = new Date();
+            setEventHasPassed(eventDate < now);
         }
     }, [event, userId]);
 
@@ -55,7 +62,7 @@ function PopupEvent({ event, onClose, isOpen, isLoggedIn, userId, handleLoginPop
                     </div>
                     <p className="popup__description">{description}</p>
                 </div>
-                <p className="popup__participant">Участники</p>/
+                <p className="popup__participant">Участники</p>
                 <div className="popup__participant-items">
                     {participants.length > 0 ? (
                         participants.map((participant, index) => (
@@ -90,22 +97,23 @@ function PopupEvent({ event, onClose, isOpen, isLoggedIn, userId, handleLoginPop
                     <img src={testImage} alt="" className="popup__gallery-image" />
                 </div>
                 <div className="popup__connection">
-                    {isLoggedIn ? (
-                        <>
-                            {userHasJoined ? (
-                                <p className="popup__connect">Вы присоединились к событию. Если передумали, можете <span className="popup-connect-span" onClick={handleCancelParticipation}>отменить участие.</span></p>
+                    {eventHasPassed ? (
+                        null
+                    ) : (
+                        isLoggedIn ? (
+                            userHasJoined ? (
+                                <p className="popup__connect">Вы присоединились к событию. Если передумали, можете <span className="popup-connect-span" onClick={handleCancelParticipation}>отменить участие</span></p>
                             ) : (
                                 <button className="popup__connect-button" onClick={handleJoinEvent}>Присоединиться к событию</button>
-                            )}
-                        </>
-                    ) : (
-                        <p className="popup__connect"><span className="popup-connect-span" onClick={handleLoginPopup}>Войдите</span>, чтобы присоединиться к событию</p>
+                            )
+                        ) : (
+                            <p className="popup__connect"><span className="popup-connect-span" onClick={handleLoginPopup}>Войдите</span>, чтобы присоединиться к событию</p>
+                        )
                     )}
                 </div>
             </div>
-        </dialog >
+        </dialog>
     );
 }
 
 export default PopupEvent;
-
