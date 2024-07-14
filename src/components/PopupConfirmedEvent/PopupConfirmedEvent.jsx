@@ -19,7 +19,7 @@ function PopupConfirmedEvent({ onClose, isOpen, selectedEvent }) {
 
     return (
         <div className={`popup-cof ${isOpen ? 'popup-cof_active' : ''}`}>
-            <div className="popup-cof_section">
+            <div className="popup-cof__section">
                 <button className="popup-cof__button-close" onClick={onClose}></button>
                 <h3 className="popup-cof__title">Поздравляем! </h3>
                 <p className="popup-cof__subtitle">Вы теперь участник события: <span className="popup-cof__span">{selectedEvent.title}</span></p>

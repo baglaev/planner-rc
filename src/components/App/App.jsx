@@ -8,7 +8,6 @@ import NavBar from '../NavBar/NavBar';
 import CreateEvent from '../CreateEvent/CreateEvent';
 import QuestionPopup from '../QuestionPopup/QuestionPopup';
 import PopupCongratulation from '../PopupCongratulation/PopupCongratulation';
-import PopupConfirmedEvent from '../PopupConfirmedEvent/PopupConfirmedEvent';
 import { getContent, addEvent, getEvents, uploadFiles } from '../../utils/api';
 
 function App() {
@@ -56,8 +55,19 @@ function App() {
 
   async function handleAddPlaceSubmit(item) {
     try {
-      const fileMetadata = await uploadFiles(item.files);
-      const res = await addEvent(item.title, item.description, item.location, item.dateStart, item.dateEnd, item.time, fileMetadata);
+      let fileMetadata = [];
+      if (item.files && item.files.length > 0) {
+        fileMetadata = await uploadFiles(item.files);
+      }
+      const res = await addEvent(
+        item.title,
+        item.description,
+        item.location,
+        item.dateStart,
+        item.dateEnd,
+        item.time,
+        fileMetadata
+      );
       setEvents([res, ...events]);
       setClosedAllPopup();
       handleCongratulationPopup(res);
@@ -172,3 +182,4 @@ function App() {
 }
 
 export default App;
+

@@ -155,6 +155,10 @@ export const addEvent = async (
 };
 
 export const uploadFiles = async (files) => {
+  if (!files || files.length === 0) {
+    return [];
+  }
+
   const token = localStorage.getItem('jwt');
   const formData = new FormData();
 
@@ -254,8 +258,8 @@ export const joinEvent = async (eventId) => {
 export const outEvent = async (eventId) => {
   const token = localStorage.getItem('jwt');
   try {
-    const response = await fetch(`${BASE_URL}/events/${eventId}`, {
-      method: 'PUT',
+    const response = await fetch(`${BASE_URL}/events/${eventId}/leave`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
