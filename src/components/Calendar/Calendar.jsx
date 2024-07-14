@@ -59,10 +59,19 @@ function Calendar({ currentDate, events, onEventClick }) {
                             >
                                 {dayNumber}
                                 <div className="calendar__events">
-                                    {dayEvents.map(event => (
+                                    {/* {dayEvents.map(event => (
                                         <div
                                             key={event.id}
                                             className="calendar__event"
+                                            onClick={() => onEventClick(event)}
+                                        >
+                                            {event.title}
+                                        </div>
+                                    ))} */}
+                                    {dayEvents.map(event => (
+                                        <div
+                                            key={event.id}
+                                            className={`calendar__event ${event.hasJoined ? 'calendar__event_active' : ''} ${new Date(event.dateStart) < new Date() ? 'calendar__event_passed' : ''}`}
                                             onClick={() => onEventClick(event)}
                                         >
                                             {event.title}

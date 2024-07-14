@@ -103,6 +103,15 @@
   cursor: pointer;
 }
 
+/* .calendar__event_active {
+  background-color: #f51b1b;
+  color: #fff;
+} */
+
+.calendar__event_passed {
+  opacity: 0.5;
+}
+
 @media screen and (max-width: 1800px) {
   .calendar__day {
     max-width: 200px;

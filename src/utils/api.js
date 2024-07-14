@@ -1,5 +1,5 @@
-export const BASE_URL = 'http://localhost:1337/api';
-// export const BASE_URL = 'https://planner.rdclr.ru/api';
+// export const BASE_URL = 'http://localhost:1337/api';
+export const BASE_URL = 'https://planner.rdclr.ru/api';
 
 const getResponseData = (res) => {
   if (!res.ok) {

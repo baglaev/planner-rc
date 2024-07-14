@@ -124,11 +124,11 @@ function App() {
   }
 
   const handleEventClick = (event) => {
-    setSelectedEvent(event);
-    setIsEventPopupOpen(true);
-
     const updatedEvent = { ...event, hasJoined: true };
     updateEventParticipants(event.id, userData.id, updatedEvent);
+
+    setSelectedEvent(event);
+    setIsEventPopupOpen(true);
   };
 
   function updateEventParticipants(eventId, userId, updatedEvent) {
@@ -141,6 +141,7 @@ function App() {
       });
     });
   }
+
 
   return (
     <>
@@ -182,4 +183,3 @@ function App() {
 }
 
 export default App;
-

@@ -92,7 +92,8 @@ function PopupEvent({ event, onClose, isOpen, isLoggedIn, userId, handleLoginPop
                 <div className="popup__gallery">
                     {(photos && photos.length > 0) ? (
                         photos.map((photo, index) => (
-                            <img key={index} src={`${'http://localhost:1337'}${photo.url}`} alt={`Фото ${index + 1}`} className="popup__gallery-image" />
+                            <img key={index} src={`${'https://planner.rdclr.ru'}${photo.url}`} alt={`Фото ${index + 1}`} className="popup__gallery-image" />
+                            // <img key={index} src={`${'http://localhost:1337'}${photo.url}`} alt={`Фото ${index + 1}`} className="popup__gallery-image" />
                         ))
                     ) : (
                         <p className="popup__connect">Фотографий нет</p>
