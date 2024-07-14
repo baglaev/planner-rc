@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './PopupEvent.css';
 import rcAvatar from '../../images/avatar-rc.png';
-import testImage from '../../images/test-image.png';
 import { joinEvent, outEvent } from '../../utils/api';
 
 function PopupEvent({ event, onClose, isOpen, isLoggedIn, userId, handleLoginPopup }) {
@@ -41,7 +40,7 @@ function PopupEvent({ event, onClose, isOpen, isLoggedIn, userId, handleLoginPop
 
     if (!event) return null;
 
-    const { title, description, location, dateStart, participants = [] } = event;
+    const { title, description, location, dateStart, participants = [], photos = [] } = event;
     const dayOfWeek = new Date(dateStart).toLocaleDateString('ru-RU', { weekday: 'long' });
     const formattedDate = new Date(dateStart).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
     const formattedTime = new Date(dateStart).toLocaleTimeString('ru-RU', { hour: 'numeric', minute: 'numeric' });
@@ -91,10 +90,13 @@ function PopupEvent({ event, onClose, isOpen, isLoggedIn, userId, handleLoginPop
                     </div>
                 </div>
                 <div className="popup__gallery">
-                    <img src={testImage} alt="" className="popup__gallery-image" />
-                    <img src={testImage} alt="" className="popup__gallery-image" />
-                    <img src={testImage} alt="" className="popup__gallery-image" />
-                    <img src={testImage} alt="" className="popup__gallery-image" />
+                    {(photos && photos.length > 0) ? (
+                        photos.map((photo, index) => (
+                            <img key={index} src={`${'http://localhost:1337'}${photo.url}`} alt={`Фото ${index + 1}`} className="popup__gallery-image" />
+                        ))
+                    ) : (
+                        <p className="popup__connect">Фотографий нет</p>
+                    )}
                 </div>
                 <div className="popup__connection">
                     {eventHasPassed ? (

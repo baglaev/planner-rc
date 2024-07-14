@@ -84,29 +84,98 @@ export const logout = async () => {
   }
 };
 
-export const addEvent = async (title, description, location, dateStart, dateEnd, time, files) => {
-  const token = localStorage.getItem('jwt');
-  const formData = new FormData();
-  formData.append('title', title);
-  formData.append('description', description);
-  formData.append('location', location);
-  formData.append('dateStart', dateStart);
-  formData.append('dateEnd', dateEnd);
-  formData.append('time', time);
+// export const addEvent = async (title, description, location, dateStart, dateEnd, time, files) => {
+//   const token = localStorage.getItem('jwt');
+//   const formData = new FormData();
+//   formData.append('title', title);
+//   formData.append('description', description);
+//   formData.append('location', location);
+//   formData.append('dateStart', dateStart);
+//   formData.append('dateEnd', dateEnd);
+//   formData.append('time', time);
 
-  files.forEach((file) => formData.append('files', file));
+//   files.forEach((file) => formData.append('photos', file));
+
+//   try {
+//     const response = await fetch(`${BASE_URL}/events`, {
+//       method: 'POST',
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//       },
+//       body: formData,
+//     });
+//     return await getResponseData(response);
+//   } catch (error) {
+//     console.error(`Ошибка добавления события: ${error}`);
+//     throw error;
+//   }
+// };
+
+export const addEvent = async (
+  title,
+  description,
+  location,
+  dateStart,
+  dateEnd,
+  time,
+  fileMetadata,
+) => {
+  const token = localStorage.getItem('jwt');
+  const eventData = {
+    data: {
+      title,
+      description,
+      location,
+      dateStart,
+      dateEnd,
+      photos: fileMetadata.map((file) => file.id),
+      participants: [],
+    },
+  };
 
   try {
     const response = await fetch(`${BASE_URL}/events`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(eventData),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Ошибка: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error(`Ошибка добавления события: ${error}`);
+    throw error;
+  }
+};
+
+export const uploadFiles = async (files) => {
+  const token = localStorage.getItem('jwt');
+  const formData = new FormData();
+
+  files.forEach((file) => formData.append('files', file));
+
+  try {
+    const response = await fetch(`${BASE_URL}/upload`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
       body: formData,
     });
-    return await getResponseData(response);
+
+    if (!response.ok) {
+      throw new Error(`Ошибка: ${response.status}`);
+    }
+
+    return await response.json();
   } catch (error) {
-    console.error(`Ошибка добавления события: ${error}`);
+    console.error(`Ошибка загрузки файлов: ${error}`);
     throw error;
   }
 };
@@ -128,17 +197,37 @@ export const checkEmail = async (email) => {
   }
 };
 
+// export const getEvents = async () => {
+//   try {
+//     // const response = await fetch(`${BASE_URL}/events`);
+//     const response = await fetch(
+//       // `${BASE_URL}/events/?pagination%5BpageSize%5D=999&populate=participants%2C%20owner`,
+//       `${BASE_URL}/events/?pagination%5BpageSize%5D=999&populate=participants%2C%20photos%2C%20owner`,
+//     );
+//     if (!response.ok) {
+//       throw new Error('Ошибка получения событий');
+//     }
+//     const data = await response.json();
+//     return data.data;
+//   } catch (error) {
+//     console.error(`Ошибка получения событий: ${error}`);
+//     throw error;
+//   }
+// };
+
 export const getEvents = async () => {
   try {
-    // const response = await fetch(`${BASE_URL}/events`);
     const response = await fetch(
-      `${BASE_URL}/events/?pagination%5BpageSize%5D=999&populate=participants%2C%20owner`,
+      `${BASE_URL}/events/?pagination%5BpageSize%5D=999&populate=participants%2C%20photos%2C%20owner`,
     );
     if (!response.ok) {
       throw new Error('Ошибка получения событий');
     }
     const data = await response.json();
-    return data.data;
+    return data.data.map((event) => ({
+      ...event,
+      photos: event.photos || [],
+    }));
   } catch (error) {
     console.error(`Ошибка получения событий: ${error}`);
     throw error;

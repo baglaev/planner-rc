@@ -8,17 +8,16 @@ import NavBar from '../NavBar/NavBar';
 import CreateEvent from '../CreateEvent/CreateEvent';
 import QuestionPopup from '../QuestionPopup/QuestionPopup';
 import PopupCongratulation from '../PopupCongratulation/PopupCongratulation';
-import PopupConfirmedEvent from '../PopupConfirmedEvent/PopupConfirmedEvent'
-import { getContent, addEvent, getEvents } from '../../utils/api';
+import PopupConfirmedEvent from '../PopupConfirmedEvent/PopupConfirmedEvent';
+import { getContent, addEvent, getEvents, uploadFiles } from '../../utils/api';
 
 function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [userData, setUserData] = useState({});
   const [events, setEvents] = useState([]);
-  const [isAddEventPopupOpen, setAddEventPopupOpen] = useState(false);
+  const [isCreateEventPopupOpen, setIsCreateEventPopupOpen] = useState(false);
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [isCreateEventPopupOpen, setIsCreateEventPopupOpen] = useState(false);
   const [isCongratulationPopupOpen, setIsCongratulationPopupOpen] = useState(false);
   const [isConfirmedPopup, setIsConfirmedPopup] = useState(false);
   const [isQuestionPopupOpen, setIsQuestionPopupOpen] = useState(false);
@@ -57,7 +56,8 @@ function App() {
 
   async function handleAddPlaceSubmit(item) {
     try {
-      const res = await addEvent(item.title, item.description, item.location, item.dateStart, item.dateEnd, item.time, item.files);
+      const fileMetadata = await uploadFiles(item.files);
+      const res = await addEvent(item.title, item.description, item.location, item.dateStart, item.dateEnd, item.time, fileMetadata);
       setEvents([res, ...events]);
       setClosedAllPopup();
       handleCongratulationPopup(res);
@@ -68,7 +68,7 @@ function App() {
 
   const setClosedAllPopup = useCallback(() => {
     setIsCreateEventPopupOpen(false);
-    // setIsEventPopupOpen(false);
+    setIsEventPopupOpen(false);
     setIsCongratulationPopupOpen(false);
     setLoginPopupOpen(false);
     setIsQuestionPopupOpen(false);
@@ -88,7 +88,6 @@ function App() {
     setClosedAllPopup();
   }, [setClosedAllPopup]);
 
-
   const handlePrevMonth = () => {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
   };
@@ -101,8 +100,7 @@ function App() {
     setLoginPopupOpen(true);
   }
 
-  function handleCreateEventPopup(createdEvent) {
-    setSelectedEvent(createdEvent);
+  function handleCreateEventPopup() {
     setIsCreateEventPopupOpen(true);
   }
 
@@ -133,6 +131,7 @@ function App() {
       });
     });
   }
+
   return (
     <>
       <Header
@@ -164,10 +163,7 @@ function App() {
         isOpen={isCongratulationPopupOpen}
         selectedEvent={selectedEvent}
       />
-
-      {/* <PopupConfirmedEvent onClose={closeAllPopups} isOpen={handleConfirmedPopup} selectedEvent={selectedEvent} /> */}
       <QuestionPopup onClose={closedQuestionPopup} isOpen={isQuestionPopupOpen} onCloseAll={closeAllPopups} />
-
       <NavBar setLoggedIn={setLoggedIn} />
       <Login handleLogin={() => setLoggedIn(true)} isOpen={isLoginPopupOpen} onClose={closeAllPopups} />
       <CreateEvent onAddPlace={handleAddPlaceSubmit} onClose={handleQuestionPopup} isOpen={isCreateEventPopupOpen} />
@@ -176,4 +172,3 @@ function App() {
 }
 
 export default App;
-
