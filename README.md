@@ -1,4 +1,4 @@
-# Тестовое задание Red Collar planner
+# Planner
 
 Ссылка на деплой https://planner-e-rc.netlify.app/
 
